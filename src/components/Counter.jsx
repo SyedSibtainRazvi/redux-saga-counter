@@ -1,15 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import {  DECREMENT, INCREMENT, INCREMENT_ASYNC } from "../features/reducers";
+import { DECREMENT, INCREMENT, INCREMENT_ASYNC } from "../features/reducers";
 
 const CounterDumb = ({ value, onIncrementAsync, onIncrement, onDecrement }) => (
   <div>
-    <button onClick={onIncrementAsync}>Increment Async</button>{" "}
     <button onClick={onIncrement}>+</button>{" "}
     <button onClick={onDecrement}>-</button>
+    <button onClick={onIncrementAsync}>Increment Async</button>{" "}
     <hr />
-    <div>{value}</div>
+    <h1>{value}</h1>
   </div>
 );
 

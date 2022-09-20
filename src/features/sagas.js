@@ -1,28 +1,28 @@
-import { delay } from "redux-saga/effects";
 import { put, takeEvery, all, call } from "redux-saga/effects";
-import { INCREMENT, DECREMENT, INCREMENT_ASYNC, } from './reducers';
+import { INCREMENT, INCREMENT_ASYNC, } from './reducers';
 
-function* hello() {
+
+function* helloSaga() {
     console.log("Hello!");
     yield 1
 }
 
-function* incrementAync() {
-    yield put({ type: DECREMENT });
-    yield call(delay, 1000);
-    yield put({ type: INCREMENT });
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+
+
+function* onIncrementAync() {
     yield call(delay, 1000);
     yield put({ type: INCREMENT });
 }
 
 
 function* watchIncrementAsync() {
-    yield takeEvery(INCREMENT_ASYNC, incrementAync);
+    yield takeEvery(INCREMENT_ASYNC, onIncrementAync);
 }
 
 export function* rootSagas() {
     yield all([
-        hello(),
+        helloSaga(),
         watchIncrementAsync(),
     ]);
 }
